@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Memory Game</title>
+        <script>
+            var timer=0;
+            var timedEvent;
+            var randomNumber = Math.floor(Math.random() * 4000) + 1000;
+
+            function updateCount(){
+                timer = timer+1;
+                document.getElementById("timer").innerHTML = timer + "miliseconds";
+            }
+
+            function changeImageFirst(){
+                document.getElementById("box").src = "red.png";
+                timedEvent = setInterval(updateCount, 1)
+            }
+
+            function delay(){
+                setTimeout(changeImageFirst, randomNumber)
+                document.getElementById("randomText").innerHTML = randomNumber;
+            }
+
+            function end(){
+                document.getElementById("box").src = "green.png";  
+                clearInterval(timedEvent);
+            }
+        
+        </script>
+    </head>
+
+    <body onload="delay()">
+        <h1 id="randomText">REACTION TEST</h1>
+        <p>
+            When the square changes colour, 
+            click it to reset back to green. 
+            Check your reaction time below.
+        </p>
+
+        <p id="timer">    milliseconds</p>
+
+        <img src="green.png" id="box" width="200px" height="200px" onclick="end();">
+    </body>
+</html>
